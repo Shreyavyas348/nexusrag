@@ -1,0 +1,36 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+src/__pycache__/
+
+# C extensions
+*.so
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Streamlit
+.streamlit/credentials.toml
+
+# Scratch files (Do not push local test scripts)
+scratch/
+
+# Reports (Do not push generated pdfs, but keep directory)
+generated_reports/*.pdf
+!generated_reports/.gitkeep
+
+# IDEs
+.vscode/
+.idea/
+.cursor/
+
+# OS files
+.DS_Store
+Thumbs.db
