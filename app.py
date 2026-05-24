@@ -28,108 +28,201 @@ st.set_page_config(
 # Theme-Safe CSS
 st.markdown("""
 <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 
     html, body, [class*="css"] {
         font-family: 'Inter', sans-serif;
     }
 
+    /* Reduce empty spacing in Streamlit layout */
+    .block-container {
+        padding-top: 1.5rem !important;
+        padding-bottom: 2rem !important;
+        padding-left: 3rem !important;
+        padding-right: 3rem !important;
+        max-width: 1300px;
+    }
+    
+    /* Reduce vertical gaps between elements */
+    .element-container {
+        margin-bottom: 0.5rem !important;
+    }
+    .stVerticalBlock {
+        gap: 0.5rem !important;
+    }
+
     /* Header Styling */
     .main-header {
-        font-size: 2.5rem;
-        font-weight: 700;
-        color: #1E293B;
-        letter-spacing: -0.02em;
-        margin-bottom: 0.2rem;
+        font-size: 2.75rem;
+        font-weight: 800;
+        background: linear-gradient(135deg, #ffffff 40%, #a5b4fc 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        letter-spacing: -0.03em;
+        margin-bottom: 0.25rem;
+        margin-top: 0rem;
     }
     .sub-header {
-        font-size: 1.15rem;
-        color: #64748B;
+        font-size: 1.1rem;
+        color: #94a3b8;
         font-weight: 400;
-        margin-bottom: 2.5rem;
+        margin-bottom: 2rem;
+        letter-spacing: -0.01em;
     }
 
     /* Section Containers */
     .glass-container {
-        background: rgba(255, 255, 255, 0.05);
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        border-radius: 12px;
-        padding: 2rem;
-        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
-        margin-bottom: 2rem;
+        background: rgba(30, 41, 59, 0.45) !important;
+        backdrop-filter: blur(16px) !important;
+        -webkit-backdrop-filter: blur(16px) !important;
+        border: 1px solid rgba(255, 255, 255, 0.07) !important;
+        border-radius: 16px !important;
+        padding: 1.5rem 2rem !important;
+        box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.3) !important;
+        margin-bottom: 1.5rem !important;
+    }
+    .section-title {
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: #818cf8;
+        margin-bottom: 1rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+    }
+
+    /* Align column contents bottom-wise for input + button alignment */
+    .glass-container div[data-testid="column"] {
+        justify-content: flex-end !important;
     }
 
     /* Source Card Styling */
     .source-card {
-        background-color: rgba(128, 128, 128, 0.05);
-        border-radius: 12px;
-        padding: 1.5rem;
-        margin-bottom: 1.2rem;
-        border-left: 5px solid #7aa2f7;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-        color: inherit;
+        background: rgba(30, 41, 59, 0.35) !important;
+        border: 1px solid rgba(255, 255, 255, 0.05) !important;
+        border-left: 4px solid #6366f1 !important;
+        border-radius: 12px !important;
+        padding: 1.25rem 1.5rem !important;
+        margin-bottom: 1rem !important;
+        box-shadow: 0 4px 20px -5px rgba(0, 0, 0, 0.15) !important;
+        transition: all 0.2s ease-in-out !important;
+    }
+    .source-card:hover {
+        border-left-color: #818cf8 !important;
+        background: rgba(30, 41, 59, 0.5) !important;
+        transform: translateX(3px);
     }
 
     .source-title {
-        color: #7aa2f7;
-        font-weight: 700;
-        font-size: 1.1rem;
-        margin-bottom: 0.5rem;
+        color: #a5b4fc !important;
+        font-weight: 700 !important;
+        font-size: 1.1rem !important;
+        margin-bottom: 0.5rem !important;
     }
 
     /* Highlight Boxes */
     .highlight-info {
-        background-color: #F0F9FF;
-        border-left: 4px solid #0EA5E9;
-        padding: 1.25rem;
-        border-radius: 0 8px 8px 0;
-        color: #0369A1;
-        margin-bottom: 1rem;
-        box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+        background-color: rgba(14, 165, 233, 0.1) !important;
+        border-left: 4px solid #0ea5e9 !important;
+        padding: 1.25rem !important;
+        border-radius: 8px !important;
+        color: #7dd3fc !important;
+        margin-bottom: 1rem !important;
+        box-shadow: 0 4px 15px rgba(14, 165, 233, 0.05) !important;
     }
     
     .highlight-warning {
-        background-color: #FFFbeb;
-        border-left: 4px solid #F59E0B;
-        padding: 1.25rem;
-        border-radius: 0 8px 8px 0;
-        color: #B45309;
-        margin-bottom: 1rem;
-        box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+        background-color: rgba(245, 158, 11, 0.1) !important;
+        border-left: 4px solid #f59e0b !important;
+        padding: 1.25rem !important;
+        border-radius: 8px !important;
+        color: #fcd34d !important;
+        margin-bottom: 1rem !important;
+        box-shadow: 0 4px 15px rgba(245, 158, 11, 0.05) !important;
     }
     
     .highlight-success {
-        background-color: #ECFDF5;
-        border-left: 4px solid #10B981;
-        padding: 1.25rem;
-        border-radius: 0 8px 8px 0;
-        color: #047857;
-        margin-bottom: 1rem;
-        box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+        background-color: rgba(16, 185, 129, 0.1) !important;
+        border-left: 4px solid #10b981 !important;
+        padding: 1.25rem !important;
+        border-radius: 8px !important;
+        color: #6ee7b7 !important;
+        margin-bottom: 1rem !important;
+        box-shadow: 0 4px 15px rgba(16, 185, 129, 0.05) !important;
     }
 
     /* Customizing Streamlit Elements */
     .stTextInput > div > div > input {
-        border-radius: 8px;
-        border: 1px solid #E2E8F0;
-        padding: 0.75rem 1rem;
+        border-radius: 10px !important;
+        border: 1px solid rgba(255, 255, 255, 0.1) !important;
+        background-color: rgba(30, 41, 59, 0.5) !important;
+        color: #f8fafc !important;
+        padding: 0.75rem 1rem !important;
+        height: 46px !important;
+        font-size: 1rem !important;
+        transition: all 0.2s ease-in-out !important;
+    }
+    .stTextInput > div > div > input:focus {
+        border-color: #6366f1 !important;
+        box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2) !important;
+        background-color: rgba(30, 41, 59, 0.7) !important;
     }
     .stSelectbox > div > div > div {
-        border-radius: 8px;
+        background-color: rgba(30, 41, 59, 0.5) !important;
+        border: 1px solid rgba(255, 255, 255, 0.08) !important;
+        color: #f8fafc !important;
+        border-radius: 8px !important;
     }
     
-    /* Action Buttons */
-    .stButton > button {
-        border-radius: 8px;
-        font-weight: 600;
-        transition: all 0.2s ease;
-        padding: 0.6rem 1rem;
+    /* Action Buttons (Primary / Secondary) */
+    .stButton > button[kind="primary"] {
+        border-radius: 10px !important;
+        font-weight: 600 !important;
+        transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        height: 46px !important;
+        background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%) !important;
+        color: white !important;
+        border: none !important;
+        padding: 0px 1.5rem !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        box-shadow: 0 4px 12px rgba(99, 102, 241, 0.2) !important;
     }
-    .stButton > button:hover {
-        transform: translateY(-1px);
-        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    .stButton > button[kind="primary"]:hover {
+        transform: translateY(-2px) !important;
+        box-shadow: 0 6px 20px rgba(99, 102, 241, 0.4) !important;
+        background: linear-gradient(135deg, #818cf8 0%, #6366f1 100%) !important;
+    }
+    .stButton > button[kind="primary"]:active {
+        transform: translateY(0px) !important;
+    }
+    
+    .stButton > button[kind="secondary"], .stDownloadButton > button {
+        border-radius: 10px !important;
+        font-weight: 600 !important;
+        transition: all 0.2s ease-in-out !important;
+        height: 42px !important;
+        background-color: rgba(30, 41, 59, 0.4) !important;
+        color: #cbd5e1 !important;
+        border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    }
+    .stButton > button[kind="secondary"]:hover, .stDownloadButton > button:hover {
+        border-color: rgba(99, 102, 241, 0.4) !important;
+        background-color: rgba(30, 41, 59, 0.7) !important;
+        color: #f8fafc !important;
+    }
+
+    /* File uploader styling */
+    [data-testid="stFileUploader"] {
+        border: 1px dashed rgba(255, 255, 255, 0.15) !important;
+        background-color: rgba(30, 41, 59, 0.2) !important;
+        border-radius: 12px !important;
+        padding: 1.5rem !important;
+        transition: all 0.2s ease !important;
+    }
+    [data-testid="stFileUploader"]:hover {
+        border-color: #6366f1 !important;
+        background-color: rgba(30, 41, 59, 0.45) !important;
     }
 
     /* PDF Viewer Container */
@@ -139,14 +232,138 @@ st.markdown("""
         overflow: hidden;
     }
 
-    /* Dark mode adjustments */
-    @media (prefers-color-scheme: dark) {
-        .main-header { color: #F8FAFC; }
-        .sub-header { color: #94A3B8; }
-        .glass-container { background: rgba(30, 41, 59, 0.5); border-color: rgba(255,255,255,0.05); }
-        .highlight-info { background-color: rgba(14, 165, 233, 0.1); color: #7DD3FC; border-color: #0EA5E9; }
-        .highlight-warning { background-color: rgba(245, 158, 11, 0.1); color: #FCD34D; border-color: #F59E0B; }
-        .highlight-success { background-color: rgba(16, 185, 129, 0.1); color: #6EE7B7; border-color: #10B981; }
+    /* Intro Card Design */
+    .step-card {
+        background: rgba(30, 41, 59, 0.45);
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        border-radius: 16px;
+        padding: 1.75rem;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.25);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+    .step-card:hover {
+        transform: translateY(-5px);
+        border-color: rgba(99, 102, 241, 0.4);
+        box-shadow: 0 10px 30px rgba(99, 102, 241, 0.15);
+    }
+    .step-icon {
+        font-size: 2.25rem;
+        margin-bottom: 0.75rem;
+    }
+    .step-title {
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: #f8fafc;
+        margin-bottom: 0.5rem;
+    }
+    .step-description {
+        font-size: 0.95rem;
+        color: #94a3b8;
+        line-height: 1.5;
+    }
+
+    /* Tabs Styling */
+    button[data-baseweb="tab"] {
+        font-family: 'Inter', sans-serif !important;
+        font-weight: 600 !important;
+        font-size: 0.95rem !important;
+        color: #94a3b8 !important;
+        border-bottom: 2px solid transparent !important;
+        transition: all 0.2s ease !important;
+        padding: 10px 16px !important;
+    }
+    button[data-baseweb="tab"]:hover {
+        color: #a5b4fc !important;
+    }
+    button[data-baseweb="tab"][aria-selected="true"] {
+        color: #6366f1 !important;
+        border-bottom: 2px solid #6366f1 !important;
+    }
+
+    /* Chat message container styling */
+    [data-testid="stChatMessage"] {
+        background-color: rgba(30, 41, 59, 0.3) !important;
+        border: 1px solid rgba(255, 255, 255, 0.04) !important;
+        border-radius: 12px !important;
+        padding: 1rem !important;
+        margin-bottom: 0.75rem !important;
+    }
+    [data-testid="stChatMessageUser"] {
+        background-color: rgba(99, 102, 241, 0.1) !important;
+        border-color: rgba(99, 102, 241, 0.2) !important;
+    }
+    
+    /* Make chat input float beautifully */
+    [data-testid="stChatInput"] {
+        background-color: #131b2e !important;
+        border: 1px solid rgba(255, 255, 255, 0.08) !important;
+        border-radius: 12px !important;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3) !important;
+    }
+
+    /* Sidebar Container styling */
+    [data-testid="stSidebar"] {
+        background-color: #0b0f19 !important;
+        border-right: 1px solid rgba(255, 255, 255, 0.05) !important;
+        padding-top: 1.5rem !important;
+    }
+    [data-testid="stSidebar"] h1 {
+        font-size: 1.35rem !important;
+        font-weight: 700 !important;
+        color: #f8fafc !important;
+        letter-spacing: -0.01em !important;
+        margin-top: 0.5rem !important;
+        margin-bottom: 1.5rem !important;
+    }
+    /* Logo styling in sidebar */
+    [data-testid="stSidebar"] img {
+        margin-bottom: 0rem !important;
+        filter: drop-shadow(0px 4px 10px rgba(99, 102, 241, 0.3));
+    }
+    
+    /* Spacing between inputs in sidebar */
+    [data-testid="stSidebar"] .element-container {
+        margin-bottom: 1rem !important;
+    }
+    
+    /* Radio and widget selectors styling inside sidebar */
+    [data-testid="stSidebar"] div[role="radiogroup"] {
+        gap: 0.5rem !important;
+    }
+    
+    [data-testid="stSidebar"] div[role="radiogroup"] label {
+        background: rgba(30, 41, 59, 0.3) !important;
+        border: 1px solid rgba(255, 255, 255, 0.03) !important;
+        border-radius: 8px !important;
+        padding: 0.5rem 0.75rem !important;
+        color: #94a3b8 !important;
+        transition: all 0.2s ease !important;
+    }
+    [data-testid="stSidebar"] div[role="radiogroup"] label:hover {
+        background: rgba(30, 41, 59, 0.6) !important;
+        color: #f8fafc !important;
+    }
+    [data-testid="stSidebar"] div[role="radiogroup"] label[data-selected="true"] {
+        background: rgba(99, 102, 241, 0.15) !important;
+        border-color: rgba(99, 102, 241, 0.4) !important;
+        color: #a5b4fc !important;
+    }
+
+    .stSelectbox label, .stSlider label {
+        font-weight: 500 !important;
+        font-size: 0.85rem !important;
+        color: #cbd5e1 !important;
+        margin-bottom: 0.25rem !important;
+    }
+    
+    hr {
+        margin: 1.25rem 0 !important;
+        border-color: rgba(255, 255, 255, 0.05) !important;
     }
 </style>
 """, unsafe_allow_html=True)
@@ -328,8 +545,20 @@ if app_feature == "Research Agent" and "report" in st.session_state:
     if "Confidence Level: High" in full_text or "**High**" in full_text: conf_level = "High"
     elif "Confidence Level: Low" in full_text or "**Low**" in full_text: conf_level = "Low"
     
-    conf_colors = {"High": "lightgreen", "Medium": "orange", "Low": "red"}
-    st.markdown(f"**AI Confidence Level**: <span style='color:{conf_colors.get(conf_level)}; font-weight:bold;'>{conf_level}</span>", unsafe_allow_html=True)
+    conf_colors = {
+        "High": {"bg": "rgba(16, 185, 129, 0.15)", "text": "#34d399", "border": "rgba(16, 185, 129, 0.3)"},
+        "Medium": {"bg": "rgba(245, 158, 11, 0.15)", "text": "#fbbf24", "border": "rgba(245, 158, 11, 0.3)"},
+        "Low": {"bg": "rgba(239, 68, 68, 0.15)", "text": "#f87171", "border": "rgba(239, 68, 68, 0.3)"}
+    }
+    cfg = conf_colors.get(conf_level, conf_colors["Medium"])
+    st.markdown(
+        f'<div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1.5rem; margin-top: 0.5rem;">'
+        f'<span style="font-size: 0.95rem; font-weight: 600; color: #94a3b8;">AI Confidence Level:</span>'
+        f'<span style="background-color: {cfg["bg"]}; color: {cfg["text"]}; border: 1px solid {cfg["border"]}; '
+        f'padding: 0.25rem 0.75rem; border-radius: 9999px; font-weight: 700; font-size: 0.85rem; letter-spacing: 0.02em;">{conf_level}</span>'
+        f'</div>', 
+        unsafe_allow_html=True
+    )
 
     rtab1, rtab2, rtab3, rtab4 = st.tabs(["📖 Foundation", "💡 Technical Depth", "🚀 Strategy", "📑 References"])
     
@@ -421,17 +650,42 @@ elif app_feature == "Paper Review" and "review_report" in st.session_state:
             st.caption("Score and Confidence are calculated via advanced technical heuristics.")
 
 elif app_feature == "Research Agent" and "report" not in st.session_state:
-    st.markdown("---")
+    st.markdown("<br><br>", unsafe_allow_html=True)
     col1, col2, col3 = st.columns(3)
     with col1:
-        st.markdown("### 🔍 1. Fetch")
-        st.caption("We scan Semantic Scholar and ArXiv.")
+        st.markdown(
+            '<div class="step-card">'
+            '<div class="step-icon">🔍</div>'
+            '<div class="step-title">1. Fetch</div>'
+            '<div class="step-description">Autonomous deep scan of academic databases including Semantic Scholar and arXiv to gather targeted peer-reviewed documents.</div>'
+            '</div>',
+            unsafe_allow_html=True
+        )
     with col2:
-        st.markdown("### 🏗️ 2. Index")
-        st.caption("Content is indexed for precise retrieval.")
+        st.markdown(
+            '<div class="step-card">'
+            '<div class="step-icon">🏗️</div>'
+            '<div class="step-title">2. Index</div>'
+            '<div class="step-description">Chunking and vector indexing of academic papers using FAISS to support highly specific, context-rich retrieval.</div>'
+            '</div>',
+            unsafe_allow_html=True
+        )
     with col3:
-        st.markdown("### ✍️ 3. Synthesize")
-        st.caption("Agent builds a structured report.")
-    st.info("👆 Enter a topic above to start.")
+        st.markdown(
+            '<div class="step-card">'
+            '<div class="step-icon">✍️</div>'
+            '<div class="step-title">3. Synthesize</div>'
+            '<div class="step-description">Leverages advanced RAG pipelines to generate comprehensive, structured research reviews without hallucinations.</div>'
+            '</div>',
+            unsafe_allow_html=True
+        )
+    
+    st.markdown("<br>", unsafe_allow_html=True)
+    st.markdown(
+        '<div class="highlight-info" style="text-align: center; border-left: none; padding: 1.25rem 1rem; font-size: 0.95rem;">'
+        '🧬 <b>Get Started:</b> Type a research topic in the search bar above and click "Generate Report" to begin.'
+        '</div>',
+        unsafe_allow_html=True
+    )
 
 # Cleanup handling
