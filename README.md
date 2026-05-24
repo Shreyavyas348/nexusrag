@@ -90,5 +90,4 @@ When deploying to Streamlit Community Cloud:
 4. **Paper Review**: Upload a PDF of your manuscript and click Run Structural Analysis for instant feedback.
 
 ## License
-
-MIT License. See `LICENSE` for more details.
+Apache License 2.0 — See LICENSE for details.
