@@ -4,9 +4,9 @@ sentence-transformers>=2.2.0
 torch>=2.0.0
 requests>=2.28.0
 pdfplumber>=0.10.0
-protobuf>=6.31.1
+protobuf>=5.29.0,<6.0.0
 fastmcp>=0.1.0
 streamlit>=1.30.0
 fpdf2>=2.7.0
-google-generativeai>=0.4.0
+google-generativeai==0.8.5
 python-dotenv>=1.0.0
